@@ -3,9 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <!-- CSS only -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <link rel="stylesheet" href="src/style.css">
     <title>Document</title>
 </head>
@@ -15,12 +16,12 @@
 <div class="wheather-wrapper"> 
 <div class="wheather"> 
     <div class="overwiev"> 
-        <h1>Kiev</h1>
+        <h1 id="city"></h1>
             <ul>
-                <li>
+                <li id="date">
                     Friday 5:00
                 </li>
-                <li>
+                <li id="description">
                     Clear
                 </li>
             </ul>
@@ -30,7 +31,7 @@
                 <div class="clearfix wheather-temperature"> 
                 <img src="https://ssl.gstatic.com/onebox/weather/64/cloudy.png" alt="Cloud" class="float-left">
                     <div class="float-left"> 
-                      <strong> 12 </strong>
+                      <strong id="temperature"></strong>
                       <span class="units">
                         <a href="#">°C</a> | <a href="# ">°F</a>
                     </span> 
@@ -40,13 +41,10 @@
             <div class="col-xs-6 col-sm-6">
                 <ul>
                     <li>
-                        Presipitation : 0%
+                        Humidity: <span id="Humidity"></span>%
                     </li>
                     <li>
-                        Humidity :
-                    </li>
-                    <li>
-                        Wind Speed :
+                        Wind Speed: <span id="WindSpeed"> </span> Km / <span class="speed">h</span> 
                     </li>
                 </ul>
             </div>

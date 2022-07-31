@@ -1,13 +1,7 @@
 body{
     font-family: "Google Sans", arial, sans-serif;
 }
-.wheather {
-    width: 600px;
-    margin: 30px auto;
-    padding: 20px;
-    border: 1px solid black;
-    border-radius: 10px;
-}
+
 
 h1 {
 color: rgb(112, 117, 122);
@@ -33,3 +27,42 @@ font-weight: 400;
 line-height: 16px ; 
 
 }
+
+.wheather-wrapper {
+   max-width: 600px;
+    margin: 30px auto;
+}
+
+.wheather {
+    
+    padding: 20px;
+    border: 1px solid black;
+    border-radius: 10px;
+}
+
+.overwiev {
+    margin-bottom: 20px;
+}
+
+.wheather-temperature img {
+    margin-right: 5px;
+    float: left;
+    height: 64px;
+    width: 64px;
+
+}
+
+.wheather-temperature strong{
+    color: rgb(32, 33, 36);
+    margin-right: -10px;
+    font-size: 64px;
+    line-height: 1;
+    font-weight: 400;
+}
+.wheather-temperature .units {
+    position: relative;
+    font-size: 16px;
+    font-weight: 400;
+    vertical-align: top;
+}
+

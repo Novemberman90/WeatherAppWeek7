@@ -1,10 +1,11 @@
-function formatDate(timetemp) {
-     let date = new Date(timetemp);
-    let hours = date.getHours()
+ let timetemp = new Date();
+ function formatDate(timetemp) {
+   
+    let hours = timetemp.getHours()
     if (hours < 10) {
         hours= `0${hours}`
       };
-    let minutes = date.getMinutes()
+    let minutes = timetemp.getMinutes()
     if (minutes < 10) {
         minutes = `0${minutes}`
       };
@@ -17,15 +18,10 @@ function formatDate(timetemp) {
                  "Friday", 
                   "Saturday" 
     ];
-    let day = days[date.getDay()];
+    let day = days[timetemp.getDay()];
   
 return `${day} ${hours}:${minutes}`
-
 }
- 
-
-
-
 
 function displayTemperature (response){
 console.log(response.data.weather[0].description);
@@ -44,11 +40,12 @@ descriptionElement.innerHTML=response.data.weather[0].description;
 
 humidityElement.innerHTML = response.data.main.humidity;
 windSpeedElement.innerHTML= Math.round(response.data.wind.speed);
-dataElement.innerHTML = formatDate(response.data.dt * 1000);
+dataElement.innerHTML = formatDate(timetemp);
 }
 
 let apiKey = "c409940fd7208150de003ea7999c3e64";
-let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=Kyiv&appid=${apiKey}&units=metric`;
+let city = "Kyiv";
+let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
 axios.get(apiUrl).then(displayTemperature);
 
 

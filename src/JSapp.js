@@ -44,9 +44,20 @@ iconElement.setAttribute( "src", `http://openweathermap.org/img/wn/${response.da
 iconElement.setAttribute("atl", response.data.weather[0].description);
 }
 
-let apiKey = "c409940fd7208150de003ea7999c3e64";
-let city = "Vinnytsia";
+function search (city) {
+    let apiKey = "c409940fd7208150de003ea7999c3e64";
 let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
 axios.get(apiUrl).then(displayTemperature);
+}
 
 
+function checkCity(event) {
+    event.preventDefault();
+    let inputCityElement = document.querySelector("#inputCity");
+   search(inputCityElement.value);
+}
+
+search("Vinnytsia");
+
+let form = document.querySelector("#search_form");
+form.addEventListener("submit", checkCity);

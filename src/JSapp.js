@@ -24,6 +24,7 @@ return `${day} ${hours}:${minutes}`
 }
 
 function displayTemperature (response){
+    console.log(response.data)
 let temperatureElement = document.querySelector("#temperature");
 let cityElement = document.querySelector("#city");
 let descriptionElement = document.querySelector("#description");
@@ -32,7 +33,9 @@ let windSpeedElement = document.querySelector("#WindSpeed");
 let dataElement = document.querySelector("#date");
 let iconElement = document.querySelector("#icon");
 
-temperatureElement.innerHTML= Math.round(response.data.main.temp); 
+celsiusTemperature = response.data.main.temp;
+
+temperatureElement.innerHTML= Math.round(celsiusTemperature); 
 cityElement.innerHTML=response.data.name;
 
 descriptionElement.innerHTML=response.data.weather[0].description;
@@ -57,7 +60,37 @@ function checkCity(event) {
    search(inputCityElement.value);
 }
 
-search("Vinnytsia");
+// Fahrenheit
+function showFahrenheitTemperature (event) {
+    event.preventDefault();
+    let fahrenheitElement = document.querySelector("#temperature");
+    celsiusLink.classList.remove("active");
+    fahrenheitLink.classList.add("active");
+    let fahrenheitTemperature = (celsiusTemperature*9) / 5 +32;
+    fahrenheitElement.innerHTML = Math.round(fahrenheitTemperature);
+}
+let celsiusTemperature = null
+// Celsium
+function showcelsiusTemperature (event) {
+    event.preventDefault();
+    let temperatureElement = document.querySelector("#temperature");
+    celsiusLink.classList.add("active");
+    fahrenheitLink.classList.remove("active");
+    temperatureElement.innerHTML = Math.round(celsiusTemperature);
+}
+
+;
 
 let form = document.querySelector("#search_form");
 form.addEventListener("submit", checkCity);
+
+
+// Fahrenheit
+let fahrenheitLink = document.querySelector("#fahrenheit");
+fahrenheitLink.addEventListener("click", showFahrenheitTemperature);
+
+// Celsium
+let celsiusLink = document.querySelector("#celsius");
+celsiusLink.addEventListener("click", showcelsiusTemperature);
+
+search("Vinnytsia");

@@ -10,7 +10,7 @@ color: white;
 font-size: 28px;
 font-weight: 400;
 line-height: 28px; 
-margin-bottom: 0;
+margin-bottom: 5px;
 }
 
 ul{
@@ -49,6 +49,7 @@ li:first-letter{
 .overwiev {
     margin-bottom: 20px;
 }
+
 
 .wheather-temperature img {
     margin-right: 5px;

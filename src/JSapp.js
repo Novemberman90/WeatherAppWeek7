@@ -23,11 +23,13 @@
 return `${day} ${hours}:${minutes}`
 }
 
-function displayForecast() {
+function displayForecast(response) {
     let forecastElement = document.querySelector("#forecast");
+    console.log(response.data.daily);
 
-    let forecastHTML = `<div class="row">`;
     let days = ["Sun","Mon", "Tue", "Wed", "Thu"];
+    let forecastHTML = `<div class="row">`;
+
     days.forEach(function(day){
         forecastHTML = 
         forecastHTML + ` 
@@ -52,6 +54,12 @@ function displayForecast() {
     
 }
 
+function getForecast(coordinates){
+    console.log(coordinates);
+    let apiKey = "c409940fd7208150de003ea7999c3e64";
+    let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=metric`;
+    axios.get(apiUrl).then(displayForecast);
+}
 
 
 function displayTemperature (response){
@@ -76,6 +84,8 @@ windSpeedElement.innerHTML= Math.round(response.data.wind.speed);
 dataElement.innerHTML = formatDate(response.data.dt * 1000);
 iconElement.setAttribute( "src", `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`);
 iconElement.setAttribute("atl", response.data.weather[0].description);
+
+getForecast(response.data.coord);
 }
 
 function search (city) {
@@ -125,4 +135,3 @@ let celsiusLink = document.querySelector("#celsius");
 celsiusLink.addEventListener("click", showcelsiusTemperature);
 
 search("Vinnytsia");
-displayForecast();

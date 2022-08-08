@@ -52,11 +52,13 @@ li:first-letter{
     box-shadow: black 1px 1px 1px 1px;
     height: 76px;
     margin-left: 20px;
-
+    font-weight: 600;
+    
 }
 
 .button_search {
     position:relative;
+    padding: 5px;
     border-radius: 50%;
     border: 1px solid black;
     box-shadow: black 1px 1px 1px 1px;
@@ -64,6 +66,7 @@ li:first-letter{
     width: 75px;
     height: 75px;
     margin-left: 26px;
+    font-weight: 600;
 }
 
 

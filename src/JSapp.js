@@ -9,6 +9,7 @@
     if (minutes < 10) {
         minutes = `0${minutes}`
       };
+
     let days = [
                 "Sunday",
                 "Monday",
@@ -67,6 +68,15 @@ function getForecast(coordinates){
     axios.get(apiUrl).then(displayForecast);
 }
 
+function getPosition(position) {
+    let lat = position.coords.latitude;
+    let lon = position.coords.longitude;
+    let apiKey = "c409940fd7208150de003ea7999c3e64";
+    let apiUr = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`;
+    axios.get(apiUr).then(displayTemperature);
+  }
+
+
 
 function displayTemperature (response){
     console.log(response.data)
@@ -94,11 +104,18 @@ iconElement.setAttribute("atl", response.data.weather[0].description);
 getForecast(response.data.coord);
 }
 
-function search (city) {
-    let apiKey = "c409940fd7208150de003ea7999c3e64";
-let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
-axios.get(apiUrl).then(displayTemperature);
+
+function search(city) {
+    let apiKey = "046499cb8100d94ce08fd23570d4bbf3";
+    let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+    axios.get(apiUrl).then(displayTemperature);
 }
+
+ 
+  
+  function position() {
+    navigator.geolocation.getCurrentPosition(getPosition);
+  }
 
 
 function checkCity(event) {
@@ -107,6 +124,11 @@ function checkCity(event) {
    search(inputCityElement.value);
 }
 
+
+
+
+let currentButton = document.querySelector(`#current-button`);
+currentButton.addEventListener("click", position);
 // Fahrenheit
 function showFahrenheitTemperature (event) {
     event.preventDefault();
@@ -126,10 +148,12 @@ function showcelsiusTemperature (event) {
     temperatureElement.innerHTML = Math.round(celsiusTemperature);
 }
 
-;
+
+
 
 let form = document.querySelector("#search_form");
 form.addEventListener("submit", checkCity);
+
 
 
 // Fahrenheit

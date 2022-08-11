@@ -53,7 +53,7 @@ li:first-letter{
     height: 76px;
     margin-left: 20px;
     font-weight: 600;
-    
+    width: 305px;
 }
 
 .button_search {
@@ -65,10 +65,22 @@ li:first-letter{
     background-color:  white; 
     width: 75px;
     height: 75px;
-    margin-left: 26px;
+    margin-left: 65px;
     font-weight: 600;
 }
 
+.button_search2 {
+    position:relative;
+    padding: 5px;
+    border-radius: 50%;
+    border: 1px solid black;
+    box-shadow: black 1px 1px 1px 1px;
+    background-color:  white; 
+    width: 75px;
+    height: 75px;
+    margin-left: 25px;
+    font-weight: 600;
+}
 
 .overwiev {
     margin-bottom: 20px;
@@ -116,12 +128,21 @@ a {
     margin-top: 15px;
     text-align: center;
     color: #000;
+    -webkit-tap-highlight-color: rgba(223, 41, 41, 0);
+}
+
+.col-2:hover{
+    background: white;
+  color: #555;
+  border-radius: 10px;
 }
 
 .weather-forcast-date {
     font-size: 16px;
     opacity: 0.6;
+    
 }
+
 
 .weather-forcast-temperature-min{
     opacity: 0.6;

@@ -96,6 +96,7 @@ li:first-letter{
 
 }
 
+
 .wheather-temperature strong{
     color: rgb(32, 33, 36);
     margin-right: 0px;
@@ -103,26 +104,25 @@ li:first-letter{
     line-height: 1;
     font-weight: 800;
 }
-.wheather-temperature .units {
-    
+
+
+
+.variant-temp {
+    text-decoration: none;
+    color: #000;
     font-size: 16px;
     vertical-align: top;
-    font-weight: 200;
+    font-weight: 200; 
+    cursor: pointer;
 }
 
 
-.wheather-temperature .active {
-    color: rgb(32, 33, 36);
+.variant-temp:hover,
+.variant-temp:focus 
+{           
+    color: white;
+}
 
-}
-.wheather-temperature  .active:hover {
-    text-decoration: none;
-    
-}
-a {
-    text-decoration: none;
-    cursor: default;
-}
 
 .weather-forcast{
     margin-top: 15px;

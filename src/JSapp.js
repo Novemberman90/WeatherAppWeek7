@@ -68,14 +68,6 @@ function getForecast(coordinates){
     axios.get(apiUrl).then(displayForecast);
 }
 
-function getPosition(position) {
-    let lat = position.coords.latitude;
-    let lon = position.coords.longitude;
-    let apiKey = "c409940fd7208150de003ea7999c3e64";
-    let apiUr = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`;
-    axios.get(apiUr).then(displayTemperature);
-  }
-
 
 
 function displayTemperature (response){
@@ -104,57 +96,70 @@ iconElement.setAttribute("atl", response.data.weather[0].description);
 getForecast(response.data.coord);
 }
 
+//----------------------Search City--------------------
 
 function search(city) {
     let apiKey = "046499cb8100d94ce08fd23570d4bbf3";
     let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
     axios.get(apiUrl).then(displayTemperature);
 }
-
- 
   
-  function position() {
-    navigator.geolocation.getCurrentPosition(getPosition);
-  }
-
-
 function checkCity(event) {
     event.preventDefault();
     let inputCityElement = document.querySelector("#inputCity");
+    if (inputCityElement.value === ""){
+      alert("Please enter city name !");
+      return;
+    }
    search(inputCityElement.value);
+  inputCityElement.value = "";
 }
 
+//---------Curent Position-----------
 
+function getPosition(position) {
+    let apiKey = "c409940fd7208150de003ea7999c3e64";
+    let lat = position.coords.latitude;
+    let lon = position.coords.longitude;
+    let apiUr = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`;
+    axios.get(apiUr).then(displayTemperature);
+  }
 
+function position(event) {
+  event.preventDefault();
+    navigator.geolocation.getCurrentPosition(getPosition);
+  }
 
 let currentButton = document.querySelector(`#current-button`);
 currentButton.addEventListener("click", position);
+
+
+//-----------------------Celsium and Fahrenheit -------------
+
+
+
 // Fahrenheit
 function showFahrenheitTemperature (event) {
     event.preventDefault();
+     let fahrenheitTemperature = (celsiusTemperature*9) / 5 +32;
     let fahrenheitElement = document.querySelector("#temperature");
+    fahrenheitElement.innerHTML = Math.round(fahrenheitTemperature);
     celsiusLink.classList.remove("active");
     fahrenheitLink.classList.add("active");
-    let fahrenheitTemperature = (celsiusTemperature*9) / 5 +32;
-    fahrenheitElement.innerHTML = Math.round(fahrenheitTemperature);
 }
-let celsiusTemperature = null
+
 // Celsium
 function showcelsiusTemperature (event) {
     event.preventDefault();
     let temperatureElement = document.querySelector("#temperature");
+    temperatureElement.innerHTML = Math.round(celsiusTemperature);
     celsiusLink.classList.add("active");
     fahrenheitLink.classList.remove("active");
-    temperatureElement.innerHTML = Math.round(celsiusTemperature);
+    
 }
-
-
-
-
+let celsiusTemperature = null;
 let form = document.querySelector("#search_form");
 form.addEventListener("submit", checkCity);
-
-
 
 // Fahrenheit
 let fahrenheitLink = document.querySelector("#fahrenheit");
@@ -165,3 +170,7 @@ let celsiusLink = document.querySelector("#celsius");
 celsiusLink.addEventListener("click", showcelsiusTemperature);
 
 search("Vinnytsia");
+function getGeo() {
+  navigator.geolocation.getCurrentPosition(getPosition);
+}
+getGeo();

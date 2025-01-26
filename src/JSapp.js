@@ -34,44 +34,42 @@ function formatDays(timeTempDate){
 
 function displayForecast(response) {
     let forecastElement = document.querySelector("#forecast");
-    let forecastDays = response.data.daily;    
+    let forecastDays = response.data.list;
+    console.log(response.data.list)
     let forecastHTML = `<div class="row">`;
-
-    forecastDays.forEach(function(day, index){
+    forecastDays.forEach((day, index) =>{
         if (index < 6){
-        forecastHTML = 
-        forecastHTML + `    
+        forecastHTML += `    
 
-<div class="col-2">
+      <div class="col-2">
         <div class="weather-forcast-date">
              ${formatDays(day.dt)}
         </div>   
          <img src="http://openweathermap.org/img/wn/${day.weather[0].icon}@2x.png" alt="#" width="42px">
           <div class="weather-forcast-temperature">
-            <span class="weather-forcast-temperature-max">${Math.round(day.temp.max)}° </span>
-            <span class="weather-forcast-temperature-min">${Math.round(day.temp.min)}° </span>
+            <span class="weather-forcast-temperature-max">${Math.round(day.main.temp_max)}° </span>
+            <span class="weather-forcast-temperature-min">${Math.round(day.main.temp_min)}° </span>
              
         </div>
    
-</div>`;}
+      </div>`;
+    }
     }); 
         
     forecastHTML = forecastHTML + `</div>`
     forecastElement.innerHTML = forecastHTML;
-    
 }
 
 function getForecast(coordinates){
-    console.log(coordinates);
     let apiKey = "c409940fd7208150de003ea7999c3e64";
-    let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=metric`;
+    let apiUrl = `https://api.openweathermap.org/data/2.5/forecast?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=metric`;
     axios.get(apiUrl).then(displayForecast);
+    
 }
 
 
 
 function displayTemperature (response){
-    console.log(response.data)
 let temperatureElement = document.querySelector("#temperature");
 let cityElement = document.querySelector("#city");
 let descriptionElement = document.querySelector("#description");
